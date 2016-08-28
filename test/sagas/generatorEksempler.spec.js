@@ -20,14 +20,22 @@ describe('Enkle generatorfunksjoner', () => {
   });
 
   function* overstyrGen() {
-    const val1 = yield { type: 'hei' };
-    const val2 = yield Object.assign({ payload: 'hello' }, val1);
+    const val1 = yield 1;
+    console.log({val1});
+    const val2 = yield val1 + 2;
+    const val3 = yield val2 + 3;
   }
 
-  it('skal kunne overstyre verdien inne i generatoren', () => {
+  it('verdien som yieldes er ikke den samme som fortsettes med inni generatoren', () => {
     const gen = overstyrGen();
-    expect(gen.next().value).toEqual({ type: 'hei'});
-    expect(gen.next({type: 'mordi'}).value).toEqual({ payload: 'hello', type: 'mordi'});
+    // Demonstrer at dette ikke vil funke uten å overstyre verdien med next
+    expect(gen.next().value).toBe(1); // 1
+    expect(isNaN(gen.next().value)).toBe(true); // NaN
+    expect(isNaN(gen.next().value)).toBe(true); // NaN
+
+    expect(gen.next().value).toBe(1);
+    expect(gen.next(1).value).toBe(3);
+    expect(gen.next(3).value).toBe(6);
   });
 
   function* errorGen() {
@@ -65,5 +73,5 @@ describe('Enkle generatorfunksjoner', () => {
 
   it('skal kunne delegere til andre generatorer', () => {
     for (const bokstav of alfabet()) console.log(bokstav);
-  })
+  });
 });
