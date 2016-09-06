@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import expect from 'expect';
 import sinon from 'sinon';
 
-describe.only('Task', () => {
+describe('Task', () => {
   it('should render a checkbox if the task is editable', () => {
     const wrapper = shallow(<Task editable />);
     expect(wrapper.find('input').length).toBe(1);

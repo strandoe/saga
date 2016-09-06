@@ -73,6 +73,7 @@
     "recompose": "^0.20.2",
     "redux": "3.3.1",
     "redux-saga": "0.9.1",
+    "redux-thunk": "^2.1.0",
     "reselect": "2.0.1",
     "shortid": "2.2.4",
     "stackinfo": "1.1.5",

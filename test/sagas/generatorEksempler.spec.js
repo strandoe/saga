@@ -27,12 +27,13 @@ describe('Enkle generatorfunksjoner', () => {
   }
 
   it('verdien som yieldes er ikke den samme som fortsettes med inni generatoren', () => {
-    const gen = overstyrGen();
+    let gen = overstyrGen();
     // Demonstrer at dette ikke vil funke uten å overstyre verdien med next
     expect(gen.next().value).toBe(1); // 1
     expect(isNaN(gen.next().value)).toBe(true); // NaN
     expect(isNaN(gen.next().value)).toBe(true); // NaN
 
+    gen = overstyrGen();
     expect(gen.next().value).toBe(1);
     expect(gen.next(1).value).toBe(3);
     expect(gen.next(3).value).toBe(6);
