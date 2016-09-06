@@ -3,11 +3,13 @@ import { connect } from 'react-redux';
 import { activeTasks, completedTasks, newTask, completeTask } from '../reducers';
 import { withState } from 'recompose';
 import shortid from 'shortid';
+import { Task } from './Task.jsx';
 
 const enhance = withState('taskText', 'setTaskText', '');
 
 const inputStyle = {
   fontSize: '1.3rem',
+  padding: '0.5em',
 };
 
 export const Tasklist = enhance(props => {
@@ -28,13 +30,13 @@ export const Tasklist = enhance(props => {
       <h3>Oppgaver</h3>
       <ul>
         {
-          props.activeTasks.map(task => <li><input type="checkbox" onChange={() => props.completeTask(task.id)} /> {task.text}</li>)
+          props.activeTasks.map(task => <li><Task editable onCheck={() => props.completeTask(task.id)} text={task.text} /></li>)
         }
       </ul>
       <h3>Fullførte oppgaver</h3>
       <ul>
         {
-          props.completedTasks.map(task => <li><input type="checkbox" checked={task.completed}/> {task.text}</li>)
+          props.completedTasks.map(task => <li><Task editable checked onCheck={() => props.completeTask(task.id)} text={task.text} /></li>)
         }
       </ul>
     </section>
