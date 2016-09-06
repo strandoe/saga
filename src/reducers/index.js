@@ -34,5 +34,6 @@ export const activeTasks = createSelector(
 );
 
 export default combineReducers({
-  tasks
+  tasks,
+  count: (state = 0, action) => action.type === 'TEST_CALL' ? action.count : state,
 });

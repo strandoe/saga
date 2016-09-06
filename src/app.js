@@ -4,7 +4,9 @@ import { render } from 'react-dom';
 import store from './store';
 import { Provider } from 'react-redux';
 import { ConnectedTasklist } from './components/Tasklist.jsx';
+import { ConnectedSaga } from './components/Saga.jsx';
 import './scss/stil.scss';
+import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 
 const Index = React.createClass({
     propTypes: {
@@ -26,7 +28,10 @@ function redirectToIndex(location, replace) {
 
 render(
     <Provider store={store}>
-      <ConnectedTasklist />
+      <Router history={hashHistory}>
+        <Route path="tasks" component={ConnectedTasklist} />
+        <Route path="saga" component={ConnectedSaga} />
+      </Router>
     </Provider>,
     document.getElementById('main')
 );

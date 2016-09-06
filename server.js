@@ -1,12 +1,5 @@
 /*eslint no-console:0 */
-var localhost = '127.0.0.1';
-// var localhostEkstern = '192.168.183.133';
-var host = localhost;
 var config = require('./webpack.config');
-var proxyMiddleware = require('http-proxy-middleware');
-var apiProxy = proxyMiddleware('/api', {target: 'http://' + host + ':9900/mss'});
-var aapenApiProxy = proxyMiddleware('/skattekalkulator/api', {target: 'http://' + host + ':8005'});
-var mssProxy = proxyMiddleware('/mss', {target: 'http://' + host + ':9900/'});
 
 var browserSync = require('browser-sync');
 var webpack = require('webpack');
@@ -21,9 +14,6 @@ browserSync({
         baseDir: 'app',
 
         middleware: [
-            apiProxy,
-            mssProxy,
-            aapenApiProxy,
             //browserSyncProxy,
             webpackDevMiddleware(bundler, {
                 // Dev middleware can't access config, so we provide publicPath
