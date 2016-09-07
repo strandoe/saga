@@ -1,6 +1,6 @@
 import expect from 'expect';
 
-describe('Enkle generatorfunksjoner', () => {
+describe.skip('Enkle generatorfunksjoner', () => {
 
   function* simpleGen() {
     yield 1;

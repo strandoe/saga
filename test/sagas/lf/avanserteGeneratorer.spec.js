@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { createStore, applyMiddleware } from 'redux'
-import { put, take, call, runSaga, sagaMiddleware } from '../../src/sagas/saga';
+import { put, take, call, runSaga, sagaMiddleware } from '../../../src/sagas/saga';
 
 function ajax(url) {
   console.log('fetching url', url);
@@ -24,7 +24,7 @@ function* minSaga() {
   }
 }
 
-describe('Avanserte generatorfunksjoner', () => {
+describe.skip('Avanserte generatorfunksjoner', () => {
   it('skal kalle vg og dispatche MOTTATT hvis alt går bra', () => {
     const sut = minSaga();
     expect(sut.next().value).toEqual(take('HENT'));
