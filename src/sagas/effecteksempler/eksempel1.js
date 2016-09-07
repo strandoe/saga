@@ -11,3 +11,12 @@ function* doCall(action) {
 export function* eksempel1() {
   yield* takeEvery('TEST_CALL', doCall);
 }
+
+// Sånn funker takeEvery
+
+function* minTakeEvery(type, gen) {
+  while (true) {
+    const action = yield take(type);
+    yield* gen(action);
+  }
+}
