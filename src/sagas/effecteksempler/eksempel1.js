@@ -1,9 +1,9 @@
 import { takeEvery } from 'redux-saga';
 import { call, put, take } from 'redux-saga/effects';
 
-const delay = ms => new Promise(resolve => setTimeout(() => resolve(), ms));
+export const delay = ms => new Promise(resolve => setTimeout(() => resolve(), ms));
 
-function* doCall(action) {
+export function* doCall(action) {
   yield call(delay, 2000);
   yield put({ type: 'TEST_CALL_FERDIG', count: action.count });
 }
@@ -17,6 +17,6 @@ export function* eksempel1() {
 function* minTakeEvery(type, gen) {
   while (true) {
     const action = yield take(type);
-    yield* gen(action);
+    yield fork(gen, action);
   }
 }
